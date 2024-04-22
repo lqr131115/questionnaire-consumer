@@ -1,10 +1,28 @@
 import QNInput from "@/components/QNComponents/QNInput/QNInput";
+import QNRadio from "@/components/QNComponents/QNRadio/QNRadio";
 
 export default function Question({ post }: any) {
   return (
-    <div>
-      <QNInput qn_id="c1" props={{ title: "title", placeholder: "请输入" }} />
-    </div>
+    <>
+      <QNInput
+        qn_id="qn_input_id"
+        props={{ title: "title", placeholder: "请输入" }}
+      />
+      <QNRadio
+        qn_id="qn_radio_id"
+        props={{
+          title: "服务器单选标题",
+          options: [
+            { value: "A", label: "A" },
+            { value: "B", label: "B" },
+            { value: "C", label: "C" },
+            { value: "D", label: "D" },
+          ],
+          defaultValue: "A",
+          vertical: false,
+        }}
+      />
+    </>
   );
 }
 
