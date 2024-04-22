@@ -1,17 +1,18 @@
 import QNInput from "@/components/QNComponents/QNInput/QNInput";
 import QNRadio from "@/components/QNComponents/QNRadio/QNRadio";
+import QNCheckbox from "@/components/QNComponents/QNCheckbox/QNCheckbox";
 
 export default function Question({ post }: any) {
   return (
     <>
       <QNInput
         qn_id="qn_input_id"
-        props={{ title: "title", placeholder: "请输入" }}
+        props={{ title: "输入标题", placeholder: "请输入" }}
       />
       <QNRadio
         qn_id="qn_radio_id"
         props={{
-          title: "服务器单选标题",
+          title: "单选标题",
           options: [
             { value: "A", label: "A" },
             { value: "B", label: "B" },
@@ -19,6 +20,19 @@ export default function Question({ post }: any) {
             { value: "D", label: "D" },
           ],
           defaultValue: "A",
+          vertical: false,
+        }}
+      />
+      <QNCheckbox
+        qn_id="qn_checkbox_id"
+        props={{
+          title: "多选标题",
+          options: [
+            { value: "A", label: "A" },
+            { value: "B", label: "B" },
+            { value: "C", label: "C" },
+            { value: "D", label: "D" },
+          ],
           vertical: false,
         }}
       />
