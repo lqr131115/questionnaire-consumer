@@ -1,0 +1,19 @@
+$border-color: #d9d9d9;
+$focus-outline-color: #40a9ff;
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.wrapper {
+  input {
+    width: 100%;
+    border: 1px solid $border-color;
+    line-height: 2;
+    border-radius: 2px;
+    &:focus {
+      outline-color: $focus-outline-color;
+      caret-color: $focus-outline-color;
+    }
+  }
+}

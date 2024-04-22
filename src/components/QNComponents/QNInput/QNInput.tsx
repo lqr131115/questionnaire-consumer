@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "./QNInput.module.css";
+import styles from "./QNInput.module.scss";
 
 type PropsType = {
   qn_id: string;
