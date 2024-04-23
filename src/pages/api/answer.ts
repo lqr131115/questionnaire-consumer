@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { postAnswer } from "@/services/answer";
 
 function getAnswerInfo(body: any) {
   const info: any = {
@@ -22,8 +23,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   // 获取Form Data, 提交服务器
   const answerInfo = getAnswerInfo(req.body);
   try {
-    console.log("answerInfo", answerInfo);
-    res.redirect("/success");
+    postAnswer(answerInfo)
+      .then(() => {
+        res.redirect("/success");
+      })
+      .catch(() => {
+        res.redirect("/failed");
+      });
   } catch (error) {
     res.redirect("/failed");
   }
