@@ -1,0 +1,19 @@
+$background-color: #40a9ff;
+$background-hover-color: #54b2ff;
+
+.btnWrapper {
+  margin-top: 10px;
+  text-align: center;
+  .btn {
+    line-height: 2;
+    width: 30%;
+    color: #fff;
+    background-color: $background-color;
+    border: none;
+    border-radius: 2px;
+    &:hover {
+      cursor: pointer;
+      background-color: $background-hover-color;
+    }
+  }
+}
