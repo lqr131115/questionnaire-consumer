@@ -6,8 +6,8 @@ import styles from "@/styles/Question.module.scss";
 export default function Question({ id }: any) {
   return (
     <>
-      <form>
-        <input type="hidden" name="questionId" value={id} />
+      <form method="post" action="/api/answer">
+        <input type="hidden" name="qnId" value={id} />
         <QNInput
           qn_id="qn_input_id"
           props={{ title: "输入标题", placeholder: "请输入" }}
@@ -60,7 +60,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  const id = `receive-${params.id}`;
+  const id = `question-${params.id}`;
   return {
     props: {
       id,
