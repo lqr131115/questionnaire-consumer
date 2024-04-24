@@ -1,44 +1,25 @@
-import QNInput from "@/components/QNComponents/QNInput/QNInput";
-import QNRadio from "@/components/QNComponents/QNRadio/QNRadio";
-import QNCheckbox from "@/components/QNComponents/QNCheckbox/QNCheckbox";
 import styles from "@/styles/Question.module.scss";
 import PageWrapper from "@/components/PageWrapper";
-export default function Question({ id }: any) {
+import { getQuestion } from "@/services/question";
+import { getMaterialByType } from "@/components/QNComponents";
+export default function Question({ data }: any) {
+  const { id, title, description, css, scripts, componentList } = data;
   return (
-    <PageWrapper title="问卷">
+    <PageWrapper
+      title={title}
+      description={description}
+      css={css}
+      scripts={scripts}
+    >
       <form method="post" action="/api/answer">
         <input type="hidden" name="qnId" value={id} />
-        <QNInput
-          qn_id="qn_input_id"
-          props={{ title: "输入标题", placeholder: "请输入" }}
-        />
-        <QNRadio
-          qn_id="qn_radio_id"
-          props={{
-            title: "单选标题",
-            options: [
-              { value: "A", label: "A" },
-              { value: "B", label: "B" },
-              { value: "C", label: "C" },
-              { value: "D", label: "D" },
-            ],
-            defaultValue: "A",
-            vertical: false,
-          }}
-        />
-        <QNCheckbox
-          qn_id="qn_checkbox_id"
-          props={{
-            title: "多选标题",
-            options: [
-              { value: "A", label: "A" },
-              { value: "B", label: "B" },
-              { value: "C", label: "C" },
-              { value: "D", label: "D" },
-            ],
-            vertical: false,
-          }}
-        />
+        {componentList.map((m: any, i: number) => {
+          const { qn_id, type, props } = m;
+          const { component: Component } = getMaterialByType(type) || {};
+          return (
+            Component && <Component key={qn_id} qn_id={qn_id} props={props} />
+          );
+        })}
         <div className={styles.btnWrapper}>
           <button className={styles.btn} type="submit">
             提交
@@ -61,9 +42,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const id = `question-${params.id}`;
+  const res = await getQuestion(id);
   return {
     props: {
-      id,
+      data: res.data,
     },
   };
 }
