@@ -28,9 +28,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         res.redirect("/success");
       })
       .catch(() => {
-        res.redirect("/failed");
+        res.redirect("/fail");
       });
   } catch (error) {
-    res.redirect("/failed");
+    res.redirect("/fail");
   }
 }

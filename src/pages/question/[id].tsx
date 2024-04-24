@@ -2,10 +2,10 @@ import QNInput from "@/components/QNComponents/QNInput/QNInput";
 import QNRadio from "@/components/QNComponents/QNRadio/QNRadio";
 import QNCheckbox from "@/components/QNComponents/QNCheckbox/QNCheckbox";
 import styles from "@/styles/Question.module.scss";
-
+import PageWrapper from "@/components/PageWrapper";
 export default function Question({ id }: any) {
   return (
-    <>
+    <PageWrapper title="问卷">
       <form method="post" action="/api/answer">
         <input type="hidden" name="qnId" value={id} />
         <QNInput
@@ -45,7 +45,7 @@ export default function Question({ id }: any) {
           </button>
         </div>
       </form>
-    </>
+    </PageWrapper>
   );
 }
 
